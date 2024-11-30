@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sameer Singh - Portfolio</title>
+    <style>
+        :root {
+            --neon-blue: #00ffff;
+            --neon-pink: #ff00ff;
+            --neon-green: #0fff95;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a1a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .neon-title {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--neon-blue);
+            text-shadow: 
+                0 0 10px var(--neon-blue),
+                0 0 20px var(--neon-blue),
+                0 0 40px var(--neon-blue);
+            margin-bottom: 30px;
+        }
+
+        .profile-section {
+            background-color: rgba(15, 15, 40, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.3),
+                inset 0 0 15px rgba(0, 255, 255, 0.2);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .skills {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .skill-tag {
+            background-color: rgba(0, 255, 255, 0.1);
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            padding: 10px 15px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background-color: var(--neon-blue);
+            color: #0a0a1a;
+            box-shadow: 
+                0 0 10px var(--neon-blue),
+                0 0 20px var(--neon-blue);
+        }
+
+        .contact-links {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .contact-links a {
+            color: var(--neon-green);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-shadow: 
+                0 0 10px var(--neon-green),
+                0 0 20px var(--neon-green);
+        }
+
+        .contact-links a:hover {
+            transform: scale(1.1);
+            color: #ffffff;
+        }
+
+        @keyframes neon-flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                text-shadow: 
+                    0 0 10px var(--neon-blue),
+                    0 0 20px var(--neon-blue),
+                    0 0 40px var(--neon-blue);
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+            }
+        }
+
+        .neon-title {
+            animation: neon-flicker 1.5s infinite alternate;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="neon-title">Sameer Singh</h1>
+        
+        <div class="profile-section">
+            <h2>B.Tech CSE(AI) Student</h2>
+            <p>Aspiring AI Developer | Frontend Enthusiast</p>
+            
+            <div class="skills">
+                <div class="skill-tag">HTML</div>
+                <div class="skill-tag">CSS</div>
+                <div class="skill-tag">JavaScript</div>
+                <div class="skill-tag">React</div>
+                <div class="skill-tag">C</div>
+                <div class="skill-tag">C++</div>
+                <div class="skill-tag">Python</div>
+            </div>
+
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/sameer-singh-974870280" target="_blank">LinkedIn</a>
+                <a href="https://www.hackerrank.com/profile/samy18mj" target="_blank">HackerRank</a>
+                <a href="https://github.com/SameerSingh369" target="_blank">GitHub</a>
+            </div>
+
+            <div style="margin-top: 30px; font-size: 0.9rem;">
+                <p>Contact: +91 9376336966</p>
+                <p>Email: samy18mj@gmail.com</p>
+                <p style="color: var(--neon-pink); margin-top: 20px;">Made with Love, India</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Optional: Add some interactive neon effects
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', (e) => {
+                e.target.style.textShadow = 
+                    '0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue)';
+            });
+            tag.addEventListener('mouseleave', (e) => {
+                e.target.style.textShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
