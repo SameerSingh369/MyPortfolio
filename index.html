@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sameer Singh - Portfolio</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         :root {
             --neon-blue: #00ffff;
@@ -14,9 +14,9 @@
             --dark-background: #0a0a1a;
             --card-background: rgba(15, 15, 40, 0.95);
             --white: #ffffff;
-            --profile-background: rgba(0, 4, 27, 0.795); /* Dark background */
-            --skills-background: rgba(0, 4, 27, 0.795); /* Dark background */
-            --contact-background: rgba(0, 4, 27, 0.795); /* Dark background */
+            --profile-background: rgba(0, 4, 27, 0.795);
+            --skills-background: rgba(0, 4, 27, 0.795);
+            --contact-background: rgba(0, 4, 27, 0.795);
         }
 
         * {
@@ -27,47 +27,66 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(120deg, #000428, #004e92);
-            background-size: 300% 300%;
-            animation: gradientShift 15s ease infinite;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #010101;
             color: var(--white);
             line-height: 1.6;
             overflow-x: hidden;
+            font-size: 1.1rem;
+            position: relative;
+            height: 100vh;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
         }
 
-        @keyframes pulseGlow {
-            0%, 100% {
-                text-shadow: 
-                    0 0 8px var(--neon-blue),
-                    0 0 15px var(--neon-pink),
-                    0 0 30px var(--neon-blue);
+        .matrix span {
+            position: absolute;
+            color: var(--neon-green);
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(15, 255, 149, 0.7);
+            opacity: 0;
+            transform-origin: center;
+            animation: hackRain 3s linear infinite;
+        }
+
+        @keyframes hackRain {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(0deg) scale(0.5);
+            }
+            20% {
+                opacity: 0.7;
+                transform: translateY(50vh) rotate(360deg) scale(1.2);
             }
             50% {
-                text-shadow: 
-                    0 0 15px var(--neon-blue),
-                    0 0 25px var(--neon-pink),
-                    0 0 45px var(--neon-blue);
+                opacity: 0.5;
+                transform: translateY(80vh) rotate(180deg) scale(0.8);
             }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
+            80% {
+                opacity: 0.3;
+                transform: translateY(100vh) rotate(720deg) scale(0.6);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(120vh) rotate(1080deg) scale(0.3);
+            }
         }
 
         .container {
             width: 90%;
             max-width: 1100px;
             margin: 0 auto;
-            padding: 50px 15px;
+            padding: relative;
             z-index: 1;
         }
 
@@ -85,8 +104,10 @@
             animation: pulseGlow 2s infinite, float 3s ease-in-out infinite;
         }
 
-        .profile-section {
-            background-color: var(--profile-background);
+        .profile-section,
+        .skills-section,
+        .contact-section {
+            background-color: var(--card-background);
             padding: 40px;
             border-radius: 15px;
             border: 2px solid var(--neon-blue);
@@ -95,37 +116,15 @@
             animation: fadeIn 2s ease-out;
         }
 
-        .skills-section {
-            background-color: var(--skills-background);
-            padding: 40px;
-            border-radius: 15px;
-            border: 2px solid var(--neon-pink);
-            box-shadow: 0 4px 30px rgba(255, 0, 255, 0.2);
-            margin-bottom: 40px;
-            animation: fadeIn 2s ease-out;
-        }
-
-        .contact-section {
-            background-color: var(--contact-background);
-            padding: 40px;
-            border-radius: 15px;
-            border: 2px solid var(--neon-green);
-            box-shadow: 0 4px 30px rgba(0, 255, 255, 0.2);
-            animation: fadeIn 2s ease-out;
-        }
-
-        .profile-section h2 {
-            color: var(--neon-pink);
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-
-        .profile-section p {
-            text-align: center;
-            margin-bottom: 20px;
+        .profile-section h2,
+        .skills-section h2,
+        .contact-info p {
             color: var(--neon-green);
-            font-size: 1.1rem;
+        }
+
+        .profile-section p,
+        .skills-section p {
+            color: var(--neon-pink);
         }
 
         .skills {
@@ -164,29 +163,20 @@
             justify-content: center;
             gap: 30px;
             margin-top: 40px;
-            animation: fadeIn 2s ease-out;
         }
 
         .contact-links a {
             color: var(--neon-green);
             text-decoration: none;
             font-size: 1.8rem;
-            transition: all 0.3s ease;
             position: relative;
+            transition: transform 0.3s ease;
         }
 
         .contact-links a:hover {
             transform: scale(1.2);
             color: var(--neon-green);
             animation: shake 0.5s ease-in-out infinite;
-        }
-
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            50% { transform: translateX(5px); }
-            75% { transform: translateX(-5px); }
-            100% { transform: translateX(0); }
         }
 
         .contact-info {
@@ -204,23 +194,55 @@
             font-size: 1rem;
         }
 
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
         }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { text-shadow: 0 0 8px var(--neon-blue), 0 0 15px var(--neon-pink), 0 0 30px var(--neon-blue); }
+            50% { text-shadow: 0 0 12px var(--neon-blue), 0 0 20px var(--neon-pink), 0 0 40px var(--neon-blue); }
+        }
     </style>
 </head>
 <body>
+    <div class="matrix">
+        <script>
+            function generateHackText() {
+                const characters = ['0', '1', '#', '@', '%', '&', '$', 'A', 'B', 'C', 'D'];
+                return characters[Math.floor(Math.random() * characters.length)];
+            }
+
+            for (let i = 0; i < 200; i++) {
+                const span = document.createElement('span');
+                span.textContent = generateHackText();
+                span.style.left = `${Math.random() * 100}vw`;
+                span.style.animationDelay = `${Math.random() * 5}s`;
+                span.style.color = Math.random() > 0.7 ? '#ff00ff' : '#0fff95';
+                document.querySelector('.matrix').appendChild(span);
+            }
+        </script>
+    </div>
+
     <div class="container">
         <h1 class="neon-title">Sameer Singh</h1>
-
-        <!-- Profile Section -->
         <div class="profile-section">
             <h2>B.Tech CSE(AI) Student</h2>
-            <p>Passionate AI Developer and Frontend Enthusiast dedicated to creating innovative technological solutions.</p>
+            <p>Results-driven AI Developer and Frontend Engineer with a proven track record of designing and implementing cutting-edge technological solutions. Committed to enhancing user experience and optimizing performance to drive strategic business outcomes.</p>
         </div>
-
-        <!-- Skills Section -->
         <div class="skills-section">
             <h2>Skills</h2>
             <div class="skills">
@@ -233,8 +255,6 @@
                 <div class="skill-tag"><i class="fab fa-python"></i> Python</div>
             </div>
         </div>
-
-        <!-- Contact Section -->
         <div class="contact-section">
             <div class="contact-links">
                 <a href="https://www.linkedin.com/in/sameer-singh-974870280" target="_blank" title="LinkedIn">
